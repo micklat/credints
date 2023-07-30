@@ -1,4 +1,4 @@
-from named_by_assignment import construct
+from nbag import construct
 from sympy.stats import Normal
 
 def normal_eti(credence: float, bounds: list[float], name=None):
