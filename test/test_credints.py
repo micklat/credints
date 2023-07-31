@@ -8,7 +8,7 @@ def test_normal_eti():
     except:
         pass
     else:
-        assert False, "calling normal_eti() outside of an assignment should fail"
+        assert False, "calling equal_tail_intervals.normal() outside of an assignment should fail"
     credence = 0.9
     low, high = 2, 4
     x = ci.normal(credence, [low, high])
