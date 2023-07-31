@@ -3,7 +3,7 @@ from sympy.stats import Normal, quantile, rv
 from typing import Optional
 
 
-def normal_eti(credence: float, bounds: list[float], name:Optional[str]=None) -> rv.RandomSymbol:
+def normal(credence: float, bounds: list[float], name:Optional[str]=None) -> rv.RandomSymbol:
     """
     Returns a normal RandomSymbol that falls within <bounds> at probability <credence>, and has
     equal probability of being higher than bounds[1] as it does of being lower than bounds[0].
@@ -18,5 +18,5 @@ def normal_eti(credence: float, bounds: list[float], name:Optional[str]=None) ->
     return construct(Normal, name, mean, stdev)
 
 
-__all__ = ["normal_eti"]
+__all__ = ["normal"]
 
