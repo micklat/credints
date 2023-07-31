@@ -25,7 +25,7 @@ def test_log_normal_eti():
     except:
         pass
     else:
-        assert False, "calling equal_tail_intervals.normal() outside of an assignment should fail"
+        assert False, "calling equal_tail_intervals.log_normal() outside of an assignment should fail"
     credence = 0.9
     low, high = 2, 4
     x = ci.log_normal(credence, [low, high])
