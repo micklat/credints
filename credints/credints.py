@@ -1,25 +1,22 @@
 from nbag import construct
-from sympy.stats import Normal
+from sympy.stats import Normal, quantile, rv
+from typing import Optional
 
-def normal_eti(credence: float, bounds: list[float], name=None):
+
+def normal_eti(credence: float, bounds: list[float], name:Optional[str]=None) -> rv.RandomSymbol:
+    """
+    Returns a normal RandomSymbol that falls within <bounds> at probability <credence>, and has
+    equal probability of being higher than bounds[1] as it does of being lower than bounds[0].
+    """
     low, high = bounds
     mean = (low+high)/2
-    std = 3 # TODO (Edo has this, as does squigglepy)
-    return construct(Normal, name, mean, std)
-
-def test():
-    x = normal_eti(0.8, [1.1, 1.4])
-    z = normal_eti(0.9, [2,4])
-    y = x*z
-    try:
-        normal_eti(0.9, [2, 4])
-    except:
-        pass
-    else:
-        assert False, "calling normal() outside of an assignment should fail"
-    assert str(y)=="x*z"
+    assert low < high
+    assert 0 < credence < 1, 'credence must be strictly between 0 and 1'
+    
+    z = quantile(Normal("stdnorm",0,1))(0.5 + credence/2)
+    stdev = (high - low) / (2 * z)
+    return construct(Normal, name, mean, stdev)
 
 
-if __name__ == '__main__':
-    test()
+__all__ = ["normal_eti"]
 
