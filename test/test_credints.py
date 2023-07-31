@@ -14,8 +14,9 @@ def test_normal_eti():
     low, high = 2, 4
     x = ci.normal(credence, [low, high])
     from sympy.stats import P
-    effective_credence = P((x>low) & (x<high)).evalf()
-    assert_almost_equal(credence, effective_credence)
+    tail_weight = (1-credence)/2
+    assert_almost_equal(tail_weight, P(x<low).evalf())
+    assert_almost_equal(tail_weight, P(x>high).evalf())
 
 
 def test_log_normal_eti():
