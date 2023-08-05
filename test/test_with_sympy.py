@@ -1,9 +1,11 @@
-import credints.equal_tail_intervals as ci
+from credints import EqualTailIntervals
 from numpy.testing import assert_almost_equal, assert_approx_equal
+import nba_sympy.stats
 import numpy as np
 
 
-def test_normal_eti():
+def test_sympy_normal_eti():
+    ci = EqualTailIntervals(nba_sympy.stats)
     try:
         ci.normal(0.9, [2, 4])
     except:
@@ -19,7 +21,8 @@ def test_normal_eti():
     assert_almost_equal(tail_weight, P(x>high).evalf())
 
 
-def test_log_normal_eti():
+def test_sympy_log_normal_eti():
+    ci = EqualTailIntervals(nba_sympy.stats)
     try:
         ci.log_normal(0.9, [2, 4])
     except:
