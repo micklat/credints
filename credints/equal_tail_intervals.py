@@ -32,7 +32,7 @@ class EqualTailIntervals:
 
     def log_normal(self, credence: float, bounds: list[float], name:Optional[str]=None): 
         """
-        Returns a normal RandomSymbol that falls within <bounds> at probability <credence>, and has
+        Returns a log-normal RandomSymbol that falls within <bounds> at probability <credence>, and has
         equal probability of being higher than bounds[1] as it does of being lower than bounds[0].
         """
         low, high = bounds
