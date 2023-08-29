@@ -40,5 +40,3 @@ class EqualTailIntervals:
         return construct(self.backend.LogNormal, name, mean, stdev)
 
 
-__all__ = ["normal"]
-
